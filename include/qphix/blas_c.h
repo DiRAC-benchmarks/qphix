@@ -153,7 +153,7 @@ namespace QPhiX {
 
 				//#pragma prefetch x,y,res
 				//#pragma vector aligned(x,y,res)
-#pragma omp simd aligned(res,x,y:veclen) reduction(+:lnorm) //by thorsten
+#pragma omp simd aligned(res,x,y:veclen) //by thorsten
 				for(int i = low; i < hi; i++) {
 					res[i]  = x[i] - y[i];
 					double tmpd = (double)res[i];
@@ -214,7 +214,7 @@ namespace QPhiX {
 				double lnorm=0;
 
 				//#pragma prefetch res
-#pragma omp simd aligned(res:veclen) reduction(+:lnorm) //by thorsten
+#pragma omp simd aligned(res:veclen) //by thorsten
 				for(int i = low; i < hi; i++) {
 					double tmpd = (double) res[i]; 
 					lnorm += (tmpd*tmpd);
@@ -274,7 +274,7 @@ namespace QPhiX {
 				double lnorm=0;
 
 				//#pragma prefetch x,p,r,mmp
-#pragma omp simd aligned(p,x,r,mmp:veclen) reduction(+:lnorm) //by thorsten
+#pragma omp simd aligned(p,x,r,mmp:veclen) //by thorsten
 				for(int i = low; i < hi; i++) {
 					x[i] += ar*p[i];
 					float tmp = r[i] -ar*mmp[i];
